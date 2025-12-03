@@ -911,14 +911,14 @@
       const v = game.skills.hard[k]||0;
       const bar = document.createElement('div');
       bar.className='skill-bar';
-      bar.innerHTML = `<span style='color:#7dd3fc'>${k}:</span> <span style='font-size:14px;color:#94a3b8'>${v}</span>`;
+      bar.innerHTML = `<span style='color:#F66733;font-weight:600'>${k}:</span> <span style='font-size:14px;color:#333333'>${v}</span>`;
       skillsList.appendChild(bar);
     });
     skillCategories.soft.forEach(k=>{
       const v = game.skills.soft[k]||0;
       const bar = document.createElement('div');
       bar.className='skill-bar';
-      bar.innerHTML = `<span style='color:#fbbf24'>${k}:</span> <span style='font-size:14px;color:#94a3b8'>${v}</span>`;
+      bar.innerHTML = `<span style='color:#F66733;font-weight:600'>${k}:</span> <span style='font-size:14px;color:#333333'>${v}</span>`;
       skillsList.appendChild(bar);
     });
 
@@ -944,9 +944,9 @@
     const mostCommonChoice = game.history.length > 0 ? game.history[0].choice : 'Unknown';
     
     const achievementsList = game.achievements.length > 0 
-      ? `<div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #475569;">
-           <div style="color: #10b981; font-weight: bold; margin-bottom: 8px;">🏆 Achievements Unlocked:</div>
-           ${game.achievements.map(a => `<div style="font-size: 12px; color: #86efac;">✓ ${a}</div>`).join('')}
+      ? `<div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #E0E0E0;">
+           <div style="color: #F66733; font-weight: bold; margin-bottom: 8px;">🏆 Achievements Unlocked:</div>
+           ${game.achievements.map(a => `<div style="font-size: 12px; color: #F66733;">✓ ${a}</div>`).join('')}
          </div>`
       : '';
     
@@ -958,13 +958,13 @@
     
     return `
       <div style="padding: 20px; line-height: 1.6;">
-        <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #fbbf24;">${r.endingType}</div>
-        <div style="font-size: 14px; margin-bottom: 15px; color: #cbd5e1;">${r.endingMessage}</div>
-        <div style="font-size: 13px; color: #94a3b8;">
-          <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #475569;"><strong>📊 Impact Analysis:</strong> Soft skills heavily weighted in hiring decisions!</div>
+        <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #F66733;">${r.endingType}</div>
+        <div style="font-size: 14px; margin-bottom: 15px; color: #333333;">${r.endingMessage}</div>
+        <div style="font-size: 13px; color: #666666;">
+          <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #E0E0E0;"><strong>📊 Impact Analysis:</strong> Soft skills heavily weighted in hiring decisions!</div>
           ${whatWorked}
           ${whatDidntWork}
-          <div style="color: #94a3b8; font-size: 12px; margin-top: 8px;"><strong>📝 Decisions Made:</strong> ${game.history.length} choices across ${game.semesterIndex} semesters</div>
+          <div style="color: #666666; font-size: 12px; margin-top: 8px;"><strong>📝 Decisions Made:</strong> ${game.history.length} choices across ${game.semesterIndex} semesters</div>
         </div>
         ${achievementsList}
       </div>
