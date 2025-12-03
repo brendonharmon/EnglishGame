@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resume Quest: The College Chronicles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <!-- Title removed from screen per request -->
+  </header>
+
+  <main class="container">
+    <section class="game-area">
+      <div id="semester-info" class="semester">Semester 1 of 8</div>
+      <div id="scenario" class="scenario"></div>
+      <div id="options" class="options"></div>
+  <div id="end-outcome-panel" class="end-outcome" style="display:none"></div>
+      <div class="controls">
+        <!-- Controls moved to the menu screen. Open Menu to access Save / Load / Reset / View Outcome -->
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="resume-preview">
+  <h2>Your Resume</h2>
+        <h3>Skills</h3>
+        <div id="skills-list" class="skills-list"></div>
+        <h3>Experience</h3>
+        <ul id="experience-list"></ul>
+        <div id="final-outcome" class="final-outcome"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Start overlay to choose major and begin play -->
+  <div id="start-overlay" class="start-overlay" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;">
+  <div class="overlay-panel">
+    <h2>Welcome</h2>
+    <p>Choose your major and begin your four-year journey.</p>
+        <div style="display:flex;gap:12px;margin:16px 0 8px;flex-wrap:wrap;">
+          <label><input type="radio" name="major" value="Engineering" checked> Engineering</label>
+          <label><input type="radio" name="major" value="Business"> Business</label>
+          <label><input type="radio" name="major" value="Liberal Arts"> Liberal Arts</label>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px;">
+          <button id="start-game-btn">Start New Game</button>
+          <button id="continue-btn">Continue</button>
+        </div>
+        <p class="hint">Tip: Press <kbd>Esc</kbd> to open the menu at any time.</p>
+    </div>
+  </div>
+
+  <!-- Menu removed: use Esc to go to Home screen -->
+
+  <!-- Footer note removed from screen per request -->
+
+  <script src="main.js"></script>
+</body>
+</html>
