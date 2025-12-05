@@ -13,7 +13,7 @@
 
   const skillCategories = {
     hard: ["Technical", "Academic", "Tools", "Intellect"],
-    soft: ["Communication", "Leadership", "Emotional", "Adaptability", "Collaboration", "TimeManagement"]
+    soft: ["Communication", "Leadership", "Emotional", "Adaptability", "Collaboration", "Productivity"]
   };
 
   // Year-end facts about soft skills
@@ -131,7 +131,7 @@
     { id: 2, title: 'Hall Fundraiser Conflict', year_available:[1], major_bias:[], difficulty:'easy', description:'Two dorm committees argue over funds.', choices:[
         { text:'Mediating meeting', hard:{}, soft:{Communication:3}, experience:'Mediated a meeting', relationship:2 },
         { text:'Let them fight', hard:{}, soft:{Emotional:-3}, experience:'Let conflict burn', relationship:-3 },
-        { text:'Organize alternate event', hard:{}, soft:{TimeManagement:0}, experience:'Organized alternate event', relationship:1 }
+        { text:'Organize alternate event', hard:{}, soft:{Productivity:0}, experience:'Organized alternate event', relationship:1 }
       ] },
     { id: 3, title: 'Study Group Dynamics', year_available:[1,2], major_bias:[], difficulty:'easy', description:'Study group member dominates discussion.', choices:[
         { text:'Step up and organize', hard:{}, soft:{Leadership:2, Communication:1}, experience:'Organized study group', relationship:1 },
@@ -146,7 +146,7 @@
     { id: 5, title: 'Group Project Deadline', year_available:[2,3], major_bias:['Computer Science','Engineering'], difficulty:'medium', description:'Your team is behind schedule on a technical deliverable.', choices:[
         { text:'Work nights with team', hard:{Technical:2}, soft:{Collaboration:2}, experience:'Pulled late nights with team', relationship:2 },
         { text:'Divide and conquer', hard:{}, soft:{Leadership:3}, experience:'Delegated tasks effectively', relationship:1 },
-        { text:'Do it yourself', hard:{Technical:3}, soft:{TimeManagement:-3}, experience:'Completed it solo', relationship:-3 }
+        { text:'Do it yourself', hard:{Technical:3}, soft:{Productivity:-3}, experience:'Completed it solo', relationship:-3 }
       ] },
     { id: 6, title: 'Professor Office Hours', year_available:[2,3], major_bias:[], difficulty:'easy', description:'Talk to a professor for guidance.', choices:[
         { text:'Ask for mentorship', hard:{}, soft:{Communication:2}, experience:'Secured professor mentorship', relationship:4 },
@@ -165,7 +165,7 @@
       ] },
     { id: 9, title: 'Company Coding Challenge', year_available:[3,4], major_bias:['Computer Science'], difficulty:'hard', description:'Company challenge requires teamwork under time.', choices:[
         { text:'Lead the team', hard:{Technical:3}, soft:{Leadership:2}, experience:'Led coding challenge', relationship:2 },
-        { text:'Focus on own module', hard:{Technical:2}, soft:{TimeManagement:2}, experience:'Delivered own module', relationship:0 },
+        { text:'Focus on own module', hard:{Technical:2}, soft:{Productivity:2}, experience:'Delivered own module', relationship:0 },
         { text:'Offer help to others', hard:{}, soft:{Collaboration:3}, experience:'Helped teammates', relationship:3 }
       ] },
     { id: 10, title: 'Ethical Dilemma', year_available:[4], major_bias:[], difficulty:'hard', description:'A senior project has ethically questionable data.', choices:[
@@ -179,7 +179,7 @@
         { text:'Help run the event', hard:{}, soft:{Leadership:2}, experience:'Helped host mixer', relationship:2 }
       ] },
     { id: 12, title: 'Side Project Launch', year_available:[2,3,4], major_bias:['Computer Science','Creative Arts'], difficulty:'medium', description:'Launch a small side project/startup idea.', choices:[
-        { text:'Build MVP quickly', hard:{Technical:3}, soft:{TimeManagement:2}, experience:'Built MVP', relationship:0 },
+        { text:'Build MVP quickly', hard:{Technical:3}, soft:{Productivity:2}, experience:'Built MVP', relationship:0 },
         { text:'Recruit team', hard:{}, soft:{Leadership:3, Collaboration:2}, experience:'Recruited teammates', relationship:3 },
         { text:'Pivot idea', hard:{}, soft:{Adaptability:2}, experience:'Pivoted project', relationship:-1 }
       ] },
@@ -189,9 +189,9 @@
         { text:'Offer constructive feedback', hard:{}, soft:{Collaboration:2}, experience:'Gave helpful critique', relationship:1 }
       ] },
     { id: 14, title: 'Part-time Job Conflict', year_available:[2,3], major_bias:[], difficulty:'medium', description:'Work schedule clashes with exams.', choices:[
-        { text:'Negotiate schedule', hard:{}, soft:{TimeManagement:3, Communication:1}, experience:'Negotiated schedule', relationship:0 },
+        { text:'Negotiate schedule', hard:{}, soft:{Productivity:3, Communication:1}, experience:'Negotiated schedule', relationship:0 },
         { text:'Quit job', hard:{}, soft:{}, experience:'Quit job to focus', relationship:-2 },
-        { text:'Ignore consequences', hard:{}, soft:{TimeManagement:-4}, experience:'Missed deadlines', relationship:-3 }
+        { text:'Ignore consequences', hard:{}, soft:{Productivity:-4}, experience:'Missed deadlines', relationship:-3 }
       ] },
     { id: 15, title: 'Startup Interview', year_available:[4], major_bias:['Computer Science','Business'], difficulty:'hard', description:'Final round interview at a startup.', choices:[
         { text:'Show leadership', hard:{}, soft:{Leadership:3, Communication:2}, experience:'Demonstrated leadership', relationship:2 },
@@ -199,9 +199,9 @@
         { text:'Ask insightful questions', hard:{}, soft:{Communication:3}, experience:'Asked good questions', relationship:3 }
       ] },
     { id: 16, title: 'Academic Probation', year_available:[1,2,3,4], major_bias:[], difficulty:'hard', description:'Low grades trigger probation.', choices:[
-        { text:'Seek tutoring', hard:{Academic:2}, soft:{TimeManagement:2}, experience:'Started tutoring', relationship:0 },
+        { text:'Seek tutoring', hard:{Academic:2}, soft:{Productivity:2}, experience:'Started tutoring', relationship:0 },
         { text:'Appeal the decision', hard:{}, soft:{Communication:2}, experience:'Appealed probation', relationship:-1 },
-        { text:'Ignore and continue', hard:{}, soft:{TimeManagement:-2}, experience:'Ignored academic warning', relationship:-2 }
+        { text:'Ignore and continue', hard:{}, soft:{Productivity:-2}, experience:'Ignored academic warning', relationship:-2 }
       ] },
     { id: 17, title: 'Collaboration Breakthrough', year_available:[3,4], major_bias:[], difficulty:'medium', description:'A team member brings a great idea.', choices:[
         { text:'Champion the idea', hard:{}, soft:{Leadership:2, Collaboration:3}, experience:'Championed team idea', relationship:3 },
@@ -209,8 +209,8 @@
         { text:'Take credit', hard:{}, soft:{Emotional:-5}, experience:'Took credit for idea', relationship:-4 }
       ] },
     { id: 18, title: 'Mental Health Crunch', year_available:[2,3,4], major_bias:[], difficulty:'hard', description:'Burnout symptoms during finals.', choices:[
-        { text:'Seek counseling', hard:{}, soft:{Emotional:4, TimeManagement:3}, experience:'Sought counseling', relationship:1 },
-        { text:'Power through', hard:{}, soft:{TimeManagement:-3}, experience:'Pushed through burnout', relationship:-3 },
+        { text:'Seek counseling', hard:{}, soft:{Emotional:4, Productivity:3}, experience:'Sought counseling', relationship:1 },
+        { text:'Power through', hard:{}, soft:{Productivity:-3}, experience:'Pushed through burnout', relationship:-3 },
         { text:'Drop a course', hard:{}, soft:{}, experience:'Dropped a course', relationship:-1 }
       ] },
     { id: 19, title: 'Alumni Networking', year_available:[3,4], major_bias:[], difficulty:'easy', description:'Alumni mentor offers coffee chat.', choices:[
@@ -427,46 +427,46 @@
   // extracurricular pool and picker
   const extrasPool = {
     common: [
-      {name:'Coding Club / Internship', hard:{Technical:2, Tools:1}, soft:{Collaboration:0, TimeManagement:0, Adaptability:-1}, exp:'Joined coding club/internship'},
-      {name:'Student Government / Leadership', hard:{}, soft:{Leadership:4, Communication:1, TimeManagement:0, Collaboration:-1}, exp:'Elected to student government'},
-      {name:'Volunteer / Mentoring', hard:{}, soft:{Communication:2, Emotional:2, Collaboration:1, TimeManagement:-1}, exp:'Volunteered/mentored'},
-      {name:'Sports Team', hard:{}, soft:{TimeManagement:1, Collaboration:1, Emotional:0, Adaptability:-1}, exp:'Joined sports team'},
-      {name:'Research Assistant', hard:{Academic:1, Tools:1}, soft:{Communication:0, TimeManagement:0, Collaboration:-1}, exp:'Research assistant'},
-      {name:'Freelance/Part-time Work', hard:{Tools:0, Intellect:-1}, soft:{TimeManagement:2, Collaboration:-1, Leadership:-1}, exp:'Part-time job'},
-      {name:'Art Club', hard:{}, soft:{Emotional:1, Collaboration:0, Adaptability:-1, TimeManagement:-1}, exp:'Joined art club'},
-      {name:'Music Ensemble', hard:{}, soft:{Emotional:1, Collaboration:1, TimeManagement:-1, Adaptability:-1}, exp:'Played in music ensemble'},
-      {name:'Debate Team', hard:{}, soft:{Communication:3, Leadership:0, TimeManagement:-1, Emotional:-1}, exp:'Joined debate team'},
-      {name:'Hackathon', hard:{Technical:1, Tools:0}, soft:{Collaboration:1, TimeManagement:0, Adaptability:-1}, exp:'Participated in hackathon'},
-      {name:'Language Exchange', hard:{Intellect:2, Academic:-1}, soft:{Adaptability:1, Communication:0, TimeManagement:-1}, exp:'Joined language exchange'},
-      {name:'Startup / Entrepreneurship Club', hard:{Technical:0, Tools:0}, soft:{Leadership:2, Collaboration:1, TimeManagement:0, Adaptability:0}, exp:'Co-founded startup club'},
-      {name:'Environmental Initiative', hard:{Academic:0}, soft:{Leadership:1, Collaboration:2, Emotional:0, TimeManagement:-1}, exp:'Led environmental project'},
-      {name:'Peer Mentorship Program', hard:{Academic:0}, soft:{Communication:3, Emotional:1, TimeManagement:0, Leadership:-1}, exp:'Mentored younger students'},
-      {name:'Consulting Club', hard:{Academic:1, Tools:0}, soft:{Communication:2, Leadership:0, Adaptability:-1, TimeManagement:-1}, exp:'Joined consulting club'},
-      {name:'Writing/Publication Club', hard:{Academic:0, Intellect:0}, soft:{Communication:2, Emotional:-1, TimeManagement:-1, Leadership:-1}, exp:'Published student writing'},
-      {name:'Gaming/Esports Club', hard:{Technical:-1}, soft:{Collaboration:2, TimeManagement:0, Adaptability:-1, Emotional:-1}, exp:'Joined esports team'},
-      {name:'Film/Media Production', hard:{Technical:1, Tools:1}, soft:{Emotional:0, Collaboration:1, Communication:0, TimeManagement:-1}, exp:'Produced student media'},
-      {name:'Community Service Organization', hard:{}, soft:{Leadership:1, Collaboration:2, Emotional:2, TimeManagement:-1}, exp:'Led community service'},
-      {name:'Cultural/International Club', hard:{Intellect:1, Academic:-1}, soft:{Communication:1, Adaptability:2, Collaboration:0, TimeManagement:-1}, exp:'Joined cultural club'},
-      {name:'Science/STEM Outreach', hard:{Technical:1, Academic:0}, soft:{Communication:2, Leadership:0, TimeManagement:-1, Collaboration:-1}, exp:'Taught STEM outreach'},
-      {name:'Business Competition Team', hard:{Academic:1, Tools:0}, soft:{Leadership:2, Communication:0, Collaboration:1, TimeManagement:-1}, exp:'Competed in business competition'},
-      {name:'Wellness/Fitness Coach', hard:{}, soft:{Leadership:2, Emotional:2, TimeManagement:1, Communication:0}, exp:'Became fitness coach'},
-      {name:'Data Analytics Project', hard:{Technical:2, Tools:2, Academic:0}, soft:{TimeManagement:0, Collaboration:0, Leadership:-1}, exp:'Led data analytics project'},
-      {name:'Case Study Competition', hard:{Academic:1, Tools:0}, soft:{Communication:1, Leadership:0, TimeManagement:0, Collaboration:1}, exp:'Competed in case studies'},
-      {name:'Robotics Club', hard:{Technical:2, Tools:1, Academic:-1}, soft:{Collaboration:1, TimeManagement:0, Leadership:-1}, exp:'Built robots with team'},
-      {name:'Finance Club', hard:{Academic:2, Tools:0}, soft:{Leadership:0, Communication:0, TimeManagement:-1, Collaboration:-1}, exp:'Analyzed financial markets'},
-      {name:'UX/UI Design Club', hard:{Tools:1, Technical:0}, soft:{Communication:1, Collaboration:0, Emotional:-1, TimeManagement:-1}, exp:'Designed user experiences'},
-      {name:'Public Speaking Workshop', hard:{}, soft:{Communication:3, Leadership:0, Emotional:0, TimeManagement:-1}, exp:'Improved public speaking'},
-      {name:'Innovation Lab', hard:{Technical:1, Tools:1, Academic:-1}, soft:{Leadership:1, Collaboration:0, Adaptability:0, TimeManagement:0}, exp:'Launched innovation project'},
-      {name:'Cybersecurity Club', hard:{Technical:2, Tools:1}, soft:{Leadership:0, Collaboration:1, TimeManagement:0, Adaptability:0}, exp:'Joined cybersecurity club'},
-      {name:'Podcast/Media Production', hard:{Tools:1, Technical:0}, soft:{Communication:2, Emotional:1, Leadership:0, TimeManagement:0}, exp:'Produced podcast series'},
-      {name:'Product Management Lab', hard:{Academic:1, Tools:1, Technical:0}, soft:{Leadership:2, Communication:1, TimeManagement:1, Collaboration:0}, exp:'Learned product management'},
-      {name:'Volunteer Tech Teaching', hard:{Technical:1, Academic:0}, soft:{Communication:3, Leadership:1, Emotional:0, TimeManagement:0}, exp:'Taught tech to underserved communities'},
-      {name:'Graduate Research Program', hard:{Academic:2, Technical:0, Tools:0}, soft:{Leadership:0, Communication:0, TimeManagement:1, Collaboration:1}, exp:'Led graduate-level research'},
-      {name:'Diversity and Inclusion Initiative', hard:{}, soft:{Leadership:2, Communication:2, Emotional:2, Collaboration:1, TimeManagement:0}, exp:'Led DEI programming'},
-      {name:'Investment Club', hard:{Academic:2, Tools:1}, soft:{Leadership:1, Communication:1, TimeManagement:0, Collaboration:0}, exp:'Managed investment portfolio'},
-      {name:'Social Impact Startup', hard:{Technical:1, Tools:0}, soft:{Leadership:3, Collaboration:2, Communication:1, TimeManagement:1}, exp:'Founded impact startup'},
-      {name:'Academic Coaching Program', hard:{Academic:1}, soft:{Communication:3, Leadership:1, Emotional:1, TimeManagement:0, Collaboration:0}, exp:'Coached peers academically'},
-      {name:'Industry Mentorship Network', hard:{}, soft:{Leadership:2, Communication:3, Emotional:1, TimeManagement:0, Collaboration:1}, exp:'Built mentorship connections'}
+      {name:'Coding Club / Internship', hard:{Technical:2, Tools:1}, soft:{Collaboration:0, Productivity:0, Adaptability:-1}, exp:'Joined coding club/internship'},
+      {name:'Student Government / Leadership', hard:{}, soft:{Leadership:4, Communication:1, Productivity:0, Collaboration:-1}, exp:'Elected to student government'},
+      {name:'Volunteer / Mentoring', hard:{}, soft:{Communication:2, Emotional:2, Collaboration:1, Productivity:-1}, exp:'Volunteered/mentored'},
+      {name:'Sports Team', hard:{}, soft:{Productivity:1, Collaboration:1, Emotional:0, Adaptability:-1}, exp:'Joined sports team'},
+      {name:'Research Assistant', hard:{Academic:1, Tools:1}, soft:{Communication:0, Productivity:0, Collaboration:-1}, exp:'Research assistant'},
+      {name:'Freelance/Part-time Work', hard:{Tools:0, Intellect:-1}, soft:{Productivity:2, Collaboration:-1, Leadership:-1}, exp:'Part-time job'},
+      {name:'Art Club', hard:{}, soft:{Emotional:1, Collaboration:0, Adaptability:-1, Productivity:-1}, exp:'Joined art club'},
+      {name:'Music Ensemble', hard:{}, soft:{Emotional:1, Collaboration:1, Productivity:-1, Adaptability:-1}, exp:'Played in music ensemble'},
+      {name:'Debate Team', hard:{}, soft:{Communication:3, Leadership:0, Productivity:-1, Emotional:-1}, exp:'Joined debate team'},
+      {name:'Hackathon', hard:{Technical:1, Tools:0}, soft:{Collaboration:1, Productivity:0, Adaptability:-1}, exp:'Participated in hackathon'},
+      {name:'Language Exchange', hard:{Intellect:2, Academic:-1}, soft:{Adaptability:1, Communication:0, Productivity:-1}, exp:'Joined language exchange'},
+      {name:'Startup / Entrepreneurship Club', hard:{Technical:0, Tools:0}, soft:{Leadership:2, Collaboration:1, Productivity:0, Adaptability:0}, exp:'Co-founded startup club'},
+      {name:'Environmental Initiative', hard:{Academic:0}, soft:{Leadership:1, Collaboration:2, Emotional:0, Productivity:-1}, exp:'Led environmental project'},
+      {name:'Peer Mentorship Program', hard:{Academic:0}, soft:{Communication:3, Emotional:1, Productivity:0, Leadership:-1}, exp:'Mentored younger students'},
+      {name:'Consulting Club', hard:{Academic:1, Tools:0}, soft:{Communication:2, Leadership:0, Adaptability:-1, Productivity:-1}, exp:'Joined consulting club'},
+      {name:'Writing/Publication Club', hard:{Academic:0, Intellect:0}, soft:{Communication:2, Emotional:-1, Productivity:-1, Leadership:-1}, exp:'Published student writing'},
+      {name:'Gaming/Esports Club', hard:{Technical:-1}, soft:{Collaboration:2, Productivity:0, Adaptability:-1, Emotional:-1}, exp:'Joined esports team'},
+      {name:'Film/Media Production', hard:{Technical:1, Tools:1}, soft:{Emotional:0, Collaboration:1, Communication:0, Productivity:-1}, exp:'Produced student media'},
+      {name:'Community Service Organization', hard:{}, soft:{Leadership:1, Collaboration:2, Emotional:2, Productivity:-1}, exp:'Led community service'},
+      {name:'Cultural/International Club', hard:{Intellect:1, Academic:-1}, soft:{Communication:1, Adaptability:2, Collaboration:0, Productivity:-1}, exp:'Joined cultural club'},
+      {name:'Science/STEM Outreach', hard:{Technical:1, Academic:0}, soft:{Communication:2, Leadership:0, Productivity:-1, Collaboration:-1}, exp:'Taught STEM outreach'},
+      {name:'Business Competition Team', hard:{Academic:1, Tools:0}, soft:{Leadership:2, Communication:0, Collaboration:1, Productivity:-1}, exp:'Competed in business competition'},
+      {name:'Wellness/Fitness Coach', hard:{}, soft:{Leadership:2, Emotional:2, Productivity:1, Communication:0}, exp:'Became fitness coach'},
+      {name:'Data Analytics Project', hard:{Technical:2, Tools:2, Academic:0}, soft:{Productivity:0, Collaboration:0, Leadership:-1}, exp:'Led data analytics project'},
+      {name:'Case Study Competition', hard:{Academic:1, Tools:0}, soft:{Communication:1, Leadership:0, Productivity:0, Collaboration:1}, exp:'Competed in case studies'},
+      {name:'Robotics Club', hard:{Technical:2, Tools:1, Academic:-1}, soft:{Collaboration:1, Productivity:0, Leadership:-1}, exp:'Built robots with team'},
+      {name:'Finance Club', hard:{Academic:2, Tools:0}, soft:{Leadership:0, Communication:0, Productivity:-1, Collaboration:-1}, exp:'Analyzed financial markets'},
+      {name:'UX/UI Design Club', hard:{Tools:1, Technical:0}, soft:{Communication:1, Collaboration:0, Emotional:-1, Productivity:-1}, exp:'Designed user experiences'},
+      {name:'Public Speaking Workshop', hard:{}, soft:{Communication:3, Leadership:0, Emotional:0, Productivity:-1}, exp:'Improved public speaking'},
+      {name:'Innovation Lab', hard:{Technical:1, Tools:1, Academic:-1}, soft:{Leadership:1, Collaboration:0, Adaptability:0, Productivity:0}, exp:'Launched innovation project'},
+      {name:'Cybersecurity Club', hard:{Technical:2, Tools:1}, soft:{Leadership:0, Collaboration:1, Productivity:0, Adaptability:0}, exp:'Joined cybersecurity club'},
+      {name:'Podcast/Media Production', hard:{Tools:1, Technical:0}, soft:{Communication:2, Emotional:1, Leadership:0, Productivity:0}, exp:'Produced podcast series'},
+      {name:'Product Management Lab', hard:{Academic:1, Tools:1, Technical:0}, soft:{Leadership:2, Communication:1, Productivity:1, Collaboration:0}, exp:'Learned product management'},
+      {name:'Volunteer Tech Teaching', hard:{Technical:1, Academic:0}, soft:{Communication:3, Leadership:1, Emotional:0, Productivity:0}, exp:'Taught tech to underserved communities'},
+      {name:'Graduate Research Program', hard:{Academic:2, Technical:0, Tools:0}, soft:{Leadership:0, Communication:0, Productivity:1, Collaboration:1}, exp:'Led graduate-level research'},
+      {name:'Diversity and Inclusion Initiative', hard:{}, soft:{Leadership:2, Communication:2, Emotional:2, Collaboration:1, Productivity:0}, exp:'Led DEI programming'},
+      {name:'Investment Club', hard:{Academic:2, Tools:1}, soft:{Leadership:1, Communication:1, Productivity:0, Collaboration:0}, exp:'Managed investment portfolio'},
+      {name:'Social Impact Startup', hard:{Technical:1, Tools:0}, soft:{Leadership:3, Collaboration:2, Communication:1, Productivity:1}, exp:'Founded impact startup'},
+      {name:'Academic Coaching Program', hard:{Academic:1}, soft:{Communication:3, Leadership:1, Emotional:1, Productivity:0, Collaboration:0}, exp:'Coached peers academically'},
+      {name:'Industry Mentorship Network', hard:{}, soft:{Leadership:2, Communication:3, Emotional:1, Productivity:0, Collaboration:1}, exp:'Built mentorship connections'}
     ]
   };
 
@@ -516,7 +516,7 @@
       return {
         prompt: 'Major group project: teammate not contributing',
         options:[
-          {text:'Do their work yourself', hard:{Technical:1}, soft:{TimeManagement:-5}, exp:'Solo-saved project (burnout)'},
+          {text:'Do their work yourself', hard:{Technical:1}, soft:{Productivity:-5}, exp:'Solo-saved project (burnout)'},
           {text:'Confront in group chat', hard:{}, soft:{Emotional:-6, Collaboration:-4}, exp:'Conflict logged publicly'},
           {text:'Private conversation to support them', hard:{}, soft:{Communication:4, Emotional:4, Leadership:2}, exp:'Built trust and fixed team dynamics'}
         ]
@@ -532,9 +532,9 @@
         id: 0,
         prompt: 'A teammate is not pulling their weight on a group project',
         options: [
-          {text:'Do their work yourself (quick fix)', hard:{Technical:1, Tools:0}, soft:{TimeManagement:-3, Leadership:-2, Emotional:-2}, exp:'Covered teammate work (burnout)', relationship:-2},
-          {text:'Private conversation to help them', hard:{}, soft:{Emotional:3, Communication:3, Leadership:1, TimeManagement:1}, exp:'Resolved conflict and built trust', relationship:2},
-          {text:'Escalate to professor/manager', hard:{}, soft:{Communication:1, Leadership:1, TimeManagement:0}, exp:'Involved authority figure', relationship:0}
+          {text:'Do their work yourself (quick fix)', hard:{Technical:1, Tools:0}, soft:{Productivity:-3, Leadership:-2, Emotional:-2}, exp:'Covered teammate work (burnout)', relationship:-2},
+          {text:'Private conversation to help them', hard:{}, soft:{Emotional:3, Communication:3, Leadership:1, Productivity:1}, exp:'Resolved conflict and built trust', relationship:2},
+          {text:'Escalate to professor/manager', hard:{}, soft:{Communication:1, Leadership:1, Productivity:0}, exp:'Involved authority figure', relationship:0}
         ]
       },
       {
@@ -542,53 +542,53 @@
         prompt: 'You discovered a conflict between two team members',
         options: [
           {text:'Call them out publicly', hard:{}, soft:{Emotional:-3, Collaboration:-3, Communication:-2}, exp:'Created social tension', relationship:-3},
-          {text:'Mediate between conflicting parties', hard:{}, soft:{Communication:2, Emotional:1, Leadership:1, TimeManagement:0}, exp:'Successfully mediated conflict', relationship:1},
-          {text:'Suggest team restructuring', hard:{}, soft:{Leadership:2, Collaboration:1, TimeManagement:1}, exp:'Reorganized team responsibilities', relationship:1}
+          {text:'Mediate between conflicting parties', hard:{}, soft:{Communication:2, Emotional:1, Leadership:1, Productivity:0}, exp:'Successfully mediated conflict', relationship:1},
+          {text:'Suggest team restructuring', hard:{}, soft:{Leadership:2, Collaboration:1, Productivity:1}, exp:'Reorganized team responsibilities', relationship:1}
         ]
       },
       {
         id: 2,
         prompt: 'Your project is behind schedule and quality is suffering',
         options: [
-          {text:'Create detailed project plan', hard:{Tools:1, Academic:0}, soft:{Leadership:1, TimeManagement:2, Collaboration:1}, exp:'Improved project planning', relationship:0},
-          {text:'Implement quality control process', hard:{Tools:1, Academic:0}, soft:{Leadership:1, TimeManagement:2, Collaboration:1}, exp:'Improved quality standards', relationship:0},
-          {text:'Create contingency backup plan', hard:{Tools:1, Academic:0}, soft:{Leadership:0, TimeManagement:3, Collaboration:1}, exp:'Prepared risk mitigation plan', relationship:0}
+          {text:'Create detailed project plan', hard:{Tools:1, Academic:0}, soft:{Leadership:1, Productivity:2, Collaboration:1}, exp:'Improved project planning', relationship:0},
+          {text:'Implement quality control process', hard:{Tools:1, Academic:0}, soft:{Leadership:1, Productivity:2, Collaboration:1}, exp:'Improved quality standards', relationship:0},
+          {text:'Create contingency backup plan', hard:{Tools:1, Academic:0}, soft:{Leadership:0, Productivity:3, Collaboration:1}, exp:'Prepared risk mitigation plan', relationship:0}
         ]
       },
       {
         id: 3,
         prompt: 'You need to upskill quickly to help your team succeed',
         options: [
-          {text:'Learn new skill to help team', hard:{Technical:2, Intellect:0}, soft:{Adaptability:3, Collaboration:1, TimeManagement:0}, exp:'Upskilled to help team', relationship:1},
-          {text:'Propose skill-swap partnerships', hard:{}, soft:{Leadership:1, Collaboration:2, TimeManagement:0, Communication:1}, exp:'Created peer learning system', relationship:1},
-          {text:'Organize knowledge-sharing session', hard:{Academic:1, Tools:0}, soft:{Communication:3, Leadership:1, Collaboration:2, TimeManagement:0}, exp:'Built team knowledge', relationship:1}
+          {text:'Learn new skill to help team', hard:{Technical:2, Intellect:0}, soft:{Adaptability:3, Collaboration:1, Productivity:0}, exp:'Upskilled to help team', relationship:1},
+          {text:'Propose skill-swap partnerships', hard:{}, soft:{Leadership:1, Collaboration:2, Productivity:0, Communication:1}, exp:'Created peer learning system', relationship:1},
+          {text:'Organize knowledge-sharing session', hard:{Academic:1, Tools:0}, soft:{Communication:3, Leadership:1, Collaboration:2, Productivity:0}, exp:'Built team knowledge', relationship:1}
         ]
       },
       {
         id: 4,
         prompt: 'Your team is stuck and needs fresh ideas to move forward',
         options: [
-          {text:'Take initiative to find solution', hard:{Technical:1, Academic:0}, soft:{Leadership:2, Adaptability:1, TimeManagement:1}, exp:'Led problem-solving effort', relationship:1},
-          {text:'Propose innovative workflow change', hard:{Tools:0, Technical:0}, soft:{Leadership:1, Adaptability:2, TimeManagement:1, Communication:0}, exp:'Optimized team workflow', relationship:0},
-          {text:'Address root cause analysis', hard:{Technical:1, Academic:1}, soft:{Leadership:0, Communication:2, TimeManagement:1}, exp:'Solved underlying problem', relationship:0}
+          {text:'Take initiative to find solution', hard:{Technical:1, Academic:0}, soft:{Leadership:2, Adaptability:1, Productivity:1}, exp:'Led problem-solving effort', relationship:1},
+          {text:'Propose innovative workflow change', hard:{Tools:0, Technical:0}, soft:{Leadership:1, Adaptability:2, Productivity:1, Communication:0}, exp:'Optimized team workflow', relationship:0},
+          {text:'Address root cause analysis', hard:{Technical:1, Academic:1}, soft:{Leadership:0, Communication:2, Productivity:1}, exp:'Solved underlying problem', relationship:0}
         ]
       },
       {
         id: 5,
         prompt: 'Morale is low and team dynamics are strained',
         options: [
-          {text:'Organize team building activity', hard:{}, soft:{Leadership:1, Collaboration:2, Emotional:1, TimeManagement:0}, exp:'Strengthened team bonds', relationship:1},
-          {text:'Seek mentorship from senior colleague', hard:{}, soft:{Communication:2, Leadership:0, TimeManagement:0, Emotional:0}, exp:'Got guidance from mentor', relationship:1},
-          {text:'Propose temporary resource increase', hard:{Academic:0, Tools:0}, soft:{Leadership:1, Communication:1, TimeManagement:1}, exp:'Secured additional resources', relationship:0}
+          {text:'Organize team building activity', hard:{}, soft:{Leadership:1, Collaboration:2, Emotional:1, Productivity:0}, exp:'Strengthened team bonds', relationship:1},
+          {text:'Seek mentorship from senior colleague', hard:{}, soft:{Communication:2, Leadership:0, Productivity:0, Emotional:0}, exp:'Got guidance from mentor', relationship:1},
+          {text:'Propose temporary resource increase', hard:{Academic:0, Tools:0}, soft:{Leadership:1, Communication:1, Productivity:1}, exp:'Secured additional resources', relationship:0}
         ]
       },
       {
         id: 6,
         prompt: 'Your team lacks clear structure and accountability',
         options: [
-          {text:'Document issue for later review', hard:{Tools:1, Academic:0}, soft:{Communication:1, TimeManagement:1, Collaboration:0}, exp:'Documented team issues', relationship:0},
-          {text:'Propose mentoring structured pathway', hard:{Academic:0, Tools:0}, soft:{Leadership:2, Communication:2, TimeManagement:0, Emotional:1}, exp:'Built development program', relationship:1},
-          {text:'Create detailed project plan', hard:{Tools:1, Academic:0}, soft:{Leadership:1, TimeManagement:2, Collaboration:1}, exp:'Improved project planning', relationship:0}
+          {text:'Document issue for later review', hard:{Tools:1, Academic:0}, soft:{Communication:1, Productivity:1, Collaboration:0}, exp:'Documented team issues', relationship:0},
+          {text:'Propose mentoring structured pathway', hard:{Academic:0, Tools:0}, soft:{Leadership:2, Communication:2, Productivity:0, Emotional:1}, exp:'Built development program', relationship:1},
+          {text:'Create detailed project plan', hard:{Tools:1, Academic:0}, soft:{Leadership:1, Productivity:2, Collaboration:1}, exp:'Improved project planning', relationship:0}
         ]
       }
     ];
@@ -889,6 +889,32 @@
   function average(arr){return arr.reduce((a,b)=>a+b,0)/arr.length}
   function mapRange(v,inMin,inMax,outMin,outMax){return (v-inMin)*(outMax-outMin)/(inMax-inMin)+outMin}
 
+  // Create confetti effect (optimized for performance)
+  function createConfetti() {
+    const colors = ['#F66733', '#FF7A52', '#7dd3fc', '#34d399', '#fbbf24', '#f472b6'];
+    const confettiCount = 50; // Reduced further for better performance
+    const container = document.getElementById('confetti-container');
+    
+    for (let i = 0; i < confettiCount; i++) {
+      // Stagger creation to reduce browser workload
+      setTimeout(() => {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = (Math.random() * 8 + 2) + 'px'; // Smaller pieces
+        confetti.style.height = (Math.random() * 8 + 2) + 'px';
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.animationDelay = '0s';
+        confetti.style.animationDuration = (Math.random() * 1.5 + 3) + 's'; // Longer fall time
+        container.appendChild(confetti);
+        
+        // Remove confetti element after animation completes
+        setTimeout(() => confetti.remove(), 6000);
+      }, i * 20); // Spread creation over 400ms
+    }
+  }
+
   // Get achievement description for tooltip
   function getAchievementDescription(achievementName) {
     const descriptions = {
@@ -974,6 +1000,8 @@
           render();
         }, {once: true});
       }
+      // Trigger confetti effect
+      createConfetti();
       return;
     }
 
@@ -1002,14 +1030,14 @@
       const v = game.skills.hard[k]||0;
       const bar = document.createElement('div');
       bar.className='skill-bar';
-      bar.innerHTML = `<span style='color:#F66733;font-weight:600'>${k}:</span> <span style='font-size:14px;color:#333333'>${v}</span>`;
+      bar.innerHTML = `<span style='color:#F66733;font-weight:600'>${k}:</span> <span style='font-size:12px;color:#333333'>${v}</span>`;
       skillsList.appendChild(bar);
     });
     skillCategories.soft.forEach(k=>{
       const v = game.skills.soft[k]||0;
       const bar = document.createElement('div');
       bar.className='skill-bar';
-      bar.innerHTML = `<span style='color:#F66733;font-weight:600'>${k}:</span> <span style='font-size:14px;color:#333333'>${v}</span>`;
+      bar.innerHTML = `<span style='color:#F66733;font-weight:600'>${k}:</span> <span style='font-size:12px;color:#333333'>${v}</span>`;
       skillsList.appendChild(bar);
     });
 
