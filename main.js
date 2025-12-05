@@ -3,9 +3,41 @@
   const SEMESTERS = 8; // 4 years
   const DECISIONS_PER_SEM = 5;
 
+  // Helper to convert semester index to academic year and semester
+  function getSemesterLabel(semesterIndex) {
+    const year = Math.floor(semesterIndex / 2) + 1;
+    const semesterNum = (semesterIndex % 2) + 1;
+    const yearNames = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
+    return `${yearNames[year - 1]} Semester ${semesterNum}`;
+  }
+
   const skillCategories = {
     hard: ["Technical", "Academic", "Tools", "Intellect"],
     soft: ["Communication", "Leadership", "Emotional", "Adaptability", "Collaboration", "TimeManagement"]
+  };
+
+  // Year-end facts about soft skills
+  const yearEndFacts = {
+    Freshman: [
+      "📊 85% of job success comes from soft skills, while only 15% comes from technical skills (Harvard University & Carnegie Foundation). Your foundation matters!",
+      "🤝 92% of hiring managers say soft skills are equally important as hard skills. Building these now puts you ahead of the competition.",
+      "🎯 Communication skills appear in 35% of all job training opportunities. Prioritizing this skill in your first year pays dividends later."
+    ],
+    Sophomore: [
+      "📈 Teams with high emotional intelligence perform 30% better than those with lower EQ. Your ability to manage emotions impacts team success.",
+      "💼 73% of employers struggle to find candidates with strong soft skills—even more than they struggle to find technical talent. You're becoming rare!",
+      "🚀 Problem-solving is the #1 soft skill sought by 91% of employers. The decisions you make now build this critical ability."
+    ],
+    Junior: [
+      "🏆 94% of recruiting professionals believe employees with stronger soft skills are MORE LIKELY to be promoted than those with more experience but weaker soft skills.",
+      "🌟 80% of employers said adaptability is essential for navigating workplace challenges. Your flexibility is a superpower.",
+      "💡 Companies emphasizing soft skills training see 50% higher employee engagement and 30% better retention. These skills = job satisfaction."
+    ],
+    Senior: [
+      "👑 Your soft skills determine your leadership potential. The most in-demand skills for senior positions are problem-solving (38%), communication (26%), and adaptability (17%).",
+      "✅ 90% of employers value candidates who demonstrate reliability and dedication—qualities built through consistent soft skill development.",
+      "🎓 As you enter the workforce, remember: 58% of professionals rank communication as THE most important soft skill. Master it, and doors open everywhere."
+    ]
   };
 
   function newSkillState() {
@@ -29,7 +61,8 @@
     experience: [],
     relationships: 0,
     history: [],
-    achievements: []
+    achievements: [],
+    showingYearEnd: false
   };
 
   // Utility: shuffle array in-place and return it
@@ -39,6 +72,18 @@
       [arr[i],arr[j]]=[arr[j],arr[i]];
     }
     return arr;
+  }
+
+  // Helper to check if current semester is a year-end (semester 2, 4, 6, 8)
+  function isYearEnd(semesterIndex) {
+    return (semesterIndex + 1) % 2 === 0; // semester 2, 4, 6, 8 are at indices 1, 3, 5, 7
+  }
+
+  // Helper to get year name from semester index
+  function getYearName(semesterIndex) {
+    const year = Math.floor(semesterIndex / 2) + 1;
+    const yearNames = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
+    return yearNames[year - 1];
   }
 
   // Initialize shuffled pools for events/classes/extras for this run
@@ -729,6 +774,11 @@
       decaySkills();
       game.decisionIndex = 0;
       game.semesterIndex += 1;
+      
+      // Check if this is a year-end (after semester 2, 4, 6, 8)
+      if(isYearEnd(game.semesterIndex - 1) && game.semesterIndex < SEMESTERS){
+        game.showingYearEnd = true;
+      }
     }
 
     saveStateAuto();
@@ -839,6 +889,18 @@
   function average(arr){return arr.reduce((a,b)=>a+b,0)/arr.length}
   function mapRange(v,inMin,inMax,outMin,outMax){return (v-inMin)*(outMax-outMin)/(inMax-inMin)+outMin}
 
+  // Get achievement description for tooltip
+  function getAchievementDescription(achievementName) {
+    const descriptions = {
+      'Renaissance Student': 'Master 5+ different skills across the game',
+      'Tech Wizard': 'Developed all hard skills to high levels',
+      'Natural Leader': 'Excelled at both Leadership and Communication',
+      'Social Butterfly': 'Built strong relationships and diverse experiences',
+      'Comeback Kid': 'Started slow but finished strong'
+    };
+    return descriptions[achievementName] || 'Special achievement unlocked!';
+  }
+
   // Persistence
   function saveStateAuto(){
     try{localStorage.setItem('resumeQuestSave', JSON.stringify(game));}catch(e){}
@@ -858,7 +920,7 @@
     render();
   }
   function resetState(){
-    game.semesterIndex=0;game.decisionIndex=0;game.skills=newSkillState();game.experience=[];game.relationships=0;game.history=[];game.major=null;game.started=false;game.eventCache={};game.choiceCache={ classes: {}, extras: {} };game.used={ events:{}, classes:{}, extras:{}, crisis:{} };game.shuffled={ eventsByYear:{}, classesByMajor:{}, extras:[], crisis:[] };game.achievements=[];
+    game.semesterIndex=0;game.decisionIndex=0;game.skills=newSkillState();game.experience=[];game.relationships=0;game.history=[];game.major=null;game.started=false;game.eventCache={};game.choiceCache={ classes: {}, extras: {} };game.used={ events:{}, classes:{}, extras:{}, crisis:{} };game.shuffled={ eventsByYear:{}, classesByMajor:{}, extras:[], crisis:[] };game.achievements=[];game.showingYearEnd=false;
     // initialize shuffled pools for new run
     initShuffledPools();
     saveStateAuto();render();
@@ -878,7 +940,7 @@
       // endgame: show final outcome and resume
       semesterInfo.textContent = 'Game Complete!';
       scenario.innerHTML = '<strong>All semesters complete! Here\'s your final outcome:</strong>';
-      optionsEl.innerHTML = '<div style="padding: 20px; text-align: center;"><em>Click anywhere or press Escape to return home</em></div>';
+      optionsEl.innerHTML = '<div style="padding: 20px; text-align: center;"><em style="color: #333333; font-size: 16px;">Click anywhere or press Escape to return home</em></div>';
       optionsEl.addEventListener('click', ()=>{ showHome(); }, {once: true});
       if(endPanel){ endPanel.innerHTML = renderFinal(); endPanel.style.display = 'block'; }
       // clear sidebar final outcome (do not render there)
@@ -886,10 +948,39 @@
       return;
     }
 
+    // Year-end screen
+    if(game.showingYearEnd){
+      const yearName = getYearName(game.semesterIndex - 1);
+      const facts = yearEndFacts[yearName] || [];
+      semesterInfo.textContent = `${yearName} Year Complete!`;
+      scenario.innerHTML = `<strong style="font-size: 18px; color: #F66733;">🎓 Completed ${yearName} Year</strong>
+        <div style="margin-top: 20px; font-size: 14px; color: #333333; line-height: 1.8;">
+          <div style="margin-bottom: 12px; padding: 12px; background: #F5F5F5; border-radius: 6px; border-left: 4px solid #F66733;">
+            <strong>💡 Fact 1:</strong> ${facts[0] || ''}
+          </div>
+          <div style="margin-bottom: 12px; padding: 12px; background: #F5F5F5; border-radius: 6px; border-left: 4px solid #F66733;">
+            <strong>💡 Fact 2:</strong> ${facts[1] || ''}
+          </div>
+          <div style="padding: 12px; background: #F5F5F5; border-radius: 6px; border-left: 4px solid #F66733;">
+            <strong>💡 Fact 3:</strong> ${facts[2] || ''}
+          </div>
+        </div>`;
+      optionsEl.innerHTML = '<div style="padding: 20px; text-align: center;"><button id="year-end-continue-btn" style="background: #F66733; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px;">Continue to Next Year</button></div>';
+      const btn = document.getElementById('year-end-continue-btn');
+      if(btn){
+        btn.addEventListener('click', ()=>{
+          game.showingYearEnd = false;
+          saveStateAuto();
+          render();
+        }, {once: true});
+      }
+      return;
+    }
+
     // during normal play ensure the end panel is hidden
     if(endPanel){ endPanel.style.display = 'none'; endPanel.innerHTML = ''; }
 
-    semesterInfo.textContent = `Semester ${game.semesterIndex+1} of ${SEMESTERS}`;
+    semesterInfo.textContent = `${getSemesterLabel(game.semesterIndex)}`;
 
     // get decisions for this semester
     const decisions = generateSemesterDecisions(game.semesterIndex);
@@ -940,13 +1031,18 @@
     
     // Calculate what worked and what didn't
     const bestSkill = Object.entries(game.skills.soft).sort((a, b) => b[1] - a[1])[0];
-    const worstSkill = Object.entries(game.skills.hard).sort((a, b) => a[1] - b[1])[0];
+    // Find worst skill across both hard and soft skills
+    const allSkills = [
+      ...Object.entries(game.skills.hard),
+      ...Object.entries(game.skills.soft)
+    ];
+    const worstSkill = allSkills.sort((a, b) => a[1] - b[1])[0];
     const mostCommonChoice = game.history.length > 0 ? game.history[0].choice : 'Unknown';
     
     const achievementsList = game.achievements.length > 0 
       ? `<div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #E0E0E0;">
            <div style="color: #F66733; font-weight: bold; margin-bottom: 8px;">🏆 Achievements Unlocked:</div>
-           ${game.achievements.map(a => `<div style="font-size: 12px; color: #F66733;">✓ ${a}</div>`).join('')}
+           ${game.achievements.map(a => `<div style="font-size: 12px; color: #F66733; margin-bottom: 4px;"><span class="achievement-item">✓ ${a}<span class="achievement-tooltip">${getAchievementDescription(a)}</span></span></div>`).join('')}
          </div>`
       : '';
     
@@ -964,7 +1060,6 @@
           <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #E0E0E0;"><strong>📊 Impact Analysis:</strong> Soft skills heavily weighted in hiring decisions!</div>
           ${whatWorked}
           ${whatDidntWork}
-          <div style="color: #666666; font-size: 12px; margin-top: 8px;"><strong>📝 Decisions Made:</strong> ${game.history.length} choices across ${game.semesterIndex} semesters</div>
         </div>
         ${achievementsList}
       </div>
@@ -992,7 +1087,7 @@
     }
     function hideHome(){
       const main = document.querySelector('main.container');
-      if(main) main.style.display = '';
+      if(main) main.style.display = 'flex';
       if(startOverlay) startOverlay.style.display = 'none';
     }
 
